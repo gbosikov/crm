@@ -25,3 +25,7 @@ def login_view(request):
 @login_required
 def home_view(request: HttpRequest) -> HttpResponse:
     return render(request, 'authentication/home.html')
+
+
+def test_view(request: HttpRequest) -> HttpResponse:
+    return HttpResponse('Test view')
