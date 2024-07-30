@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication.apps.AuthenticationConfig',
     'errors.apps.ErrorsConfig',
+    'ad_sync.apps.AdSyncConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'authentication.backends.ActiveDirectoryBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# LDAP config
+LDAP_DOMAIN = 'testorg.com'
+LDAP_SERVER = 'ldap://DC-1.testorg.com'
+LDAP_USER_DN_TEMPLATE = 'cn={user},ou=users,dc=testorg,dc=com'
+username = 'gbosikov'
+LDAP_USER = f"{LDAP_DOMAIN}\\{username}"
+LDAP_PASSWORD = 'coolp1X1'
 
 ROOT_URLCONF = 'core.urls'
 
